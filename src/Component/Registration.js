@@ -11,8 +11,18 @@ const Registration = () => {
   const handleRegister = (e) => {
     e.preventDefault();
     if (username && password) {
-      setRegisteredUser({ username, password });
-      navigate('/login');
+      // Save user to local storage
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+      const userExists = users.some(user => user.username === username);
+
+      if (userExists) {
+        alert('User already exists');
+      } else {
+        users.push({ username, password });
+        localStorage.setItem('users', JSON.stringify(users));
+        setRegisteredUser({ username, password });
+        navigate('/login');
+      }
     } else {
       alert('Please enter both username and password');
     }

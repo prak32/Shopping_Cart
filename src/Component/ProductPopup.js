@@ -29,9 +29,12 @@
 // export default ProductPopup;
 import React, { useContext } from 'react';
 import { CartContext } from './CartContext';
+import { useAuth } from './AuthContext';
 
 const ProductPopup = ({ product, onClose }) => {
   const { addToCart } = useContext(CartContext);
+  const {isAuthenticated} = useAuth();
+
 
   const handleAddToCart = () => {
     addToCart(product);
@@ -46,7 +49,13 @@ const ProductPopup = ({ product, onClose }) => {
         <p className="flex justify-center font-semibold pb-4 bg-gradient-to-r from-sky-600 via-red-700 to-purple-900 inline-block text-transparent bg-clip-text">{product.description}</p>
         <div className="flex justify-between items-center mt-4">
           <button 
-            onClick={handleAddToCart} 
+            onClick={() => {
+              if (isAuthenticated) {
+                handleAddToCart();
+              } else {
+                alert("You must sign up before adding items to the cart.");
+              }
+            }}
             className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
           >
             Add to Cart

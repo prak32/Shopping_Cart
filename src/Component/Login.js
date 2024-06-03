@@ -51,6 +51,7 @@
 // };
 
 // export default Login;
+// login.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
@@ -59,16 +60,17 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const { setIsAuthenticated, registeredUser,isAuthenticated } = useAuth();
+  const { setIsAuthenticated } = useAuth();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (registeredUser && username === registeredUser.username && password === registeredUser.password) {
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const user = users.find(user => user.username === username && user.password === password);
+
+    if (user) {
       setIsAuthenticated(true);
       navigate('/cart');
-
-    }
-    else {
+    } else {
       alert('Invalid username or password');
     }
   };
