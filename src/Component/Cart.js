@@ -256,7 +256,7 @@ import Modal from "./Modal";
 import { CartContext } from "./CartContext";
 import Navbar from "./Navbar";
 import { useAuth } from './AuthContext';
-
+import { toast } from "react-toastify";
 const Cart = () => {
   const {
     item,
@@ -343,6 +343,7 @@ const Cart = () => {
         "A17 Bionic chip",
         "Dual 12MP Ultra Wide and Wide cameras",
         "Up to 26 hours of talk time",
+        "3200mah Battery",
         "128GB, 256GB, 512GB",
       ],
     },
@@ -367,8 +368,8 @@ const Cart = () => {
     <>
       <Navbar />
       <section>
-        <div className="ml-4 text-center my-8 bg-[url('https://i.pinimg.com/236x/a7/a6/77/a7a677b4fb8d77e3a4edb458b2f5aa14.jpg')] bg-auto bg-center">
-          <h2 className="text-4xl font-bold pb-5">
+        <div className="text-center my-8 bg-[url('https://i.pinimg.com/236x/a7/a6/77/a7a677b4fb8d77e3a4edb458b2f5aa14.jpg')] bg-auto bg-center">
+          <h2 className="mt-24 text-4xl font-bold pb-5">
             Welcome to Our e-Commerce Website
           </h2>
           <div className="flex flex-col text-2xl italic animate-pulse">
@@ -388,7 +389,7 @@ const Cart = () => {
         </div>
         <section className="my-8">
           <div className="text-center">
-            <h2 className="text-3xl font-bold mb-4">IPhone Specifications</h2>
+            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-sky-600 via-blue-700 to-purple-950 inline-block text-transparent bg-clip-text">IPhone Specifications</h2>
             <p className="text-lg mb-6">
               Discover the features and specifications of the latest iPhones.
               Each model is designed to offer the best user experience with
@@ -470,7 +471,7 @@ const Cart = () => {
               if (isAuthenticated) {
                 handleAddToCart();
               } else {
-                alert("You must sign up before adding items to the cart.");
+                toast.error("You must sign up before adding items to the cart.");
               }
             }}
           >
@@ -484,7 +485,7 @@ const Cart = () => {
               if (isAuthenticated) {
                 handleCheckout();
               } else {
-                alert("You must sign up before checking out.");
+                toast.error("You must sign up before checking out.");
               }
             }}
           >

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Registration = () => {
   const [username, setUsername] = useState('');
@@ -16,15 +18,42 @@ const Registration = () => {
       const userExists = users.some(user => user.username === username);
 
       if (userExists) {
-        alert('User already exists');
+        toast.error('User already exists', {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       } else {
         users.push({ username, password });
         localStorage.setItem('users', JSON.stringify(users));
         setRegisteredUser({ username, password });
-        navigate('/login');
+        toast.success('Registered Successfully', {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setTimeout(() => {
+          navigate('/login');
+        }, 2000);
       }
     } else {
-      alert('Please enter both username and password');
+      toast.error('Please enter both username and password', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
@@ -49,11 +78,12 @@ const Registration = () => {
             required
             className="w-full p-2 border border-gray-300 rounded-md"
           />
-          <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-md hover:border">
+          <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700">
             Register
           </button>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };

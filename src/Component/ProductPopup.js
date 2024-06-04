@@ -30,6 +30,7 @@
 import React, { useContext } from 'react';
 import { CartContext } from './CartContext';
 import { useAuth } from './AuthContext';
+import { toast } from 'react-toastify';
 
 const ProductPopup = ({ product, onClose }) => {
   const { addToCart } = useContext(CartContext);
@@ -53,7 +54,7 @@ const ProductPopup = ({ product, onClose }) => {
               if (isAuthenticated) {
                 handleAddToCart();
               } else {
-                alert("You must sign up before adding items to the cart.");
+                toast.error("You must sign up before adding items to the cart.");
               }
             }}
             className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"

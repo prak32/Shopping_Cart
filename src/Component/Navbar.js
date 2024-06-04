@@ -1,25 +1,26 @@
 import React, { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { FaArrowCircleRight } from 'react-icons/fa';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa';
 import { IoMdCart, IoMdSearch } from 'react-icons/io';
 import { CartContext } from './CartContext';
 import ProductPopup from './ProductPopup';
 import { useAuth } from './AuthContext';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = () => {
   const { totalItemsInCart, item } = useContext(CartContext);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
-  const [notFound, setNotFound] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
   const navigate = useNavigate();
+  const location = useLocation();
   const { isAuthenticated, setIsAuthenticated } = useAuth();
 
   const handleSearchChange = (e) => {
     const query = e.target.value;
     setSearchQuery(query);
-    setNotFound(false); // Reset the not found message when the search query changes
 
     if (query.toLowerCase().includes('iphone')) {
       const filteredSuggestions = item.filter(product =>
@@ -37,9 +38,16 @@ const Navbar = () => {
       if (foundProduct) {
         setSelectedProduct(foundProduct);
         setShowPopup(true);
-        setNotFound(false);
       } else {
-        setNotFound(true);
+        toast.error('Product not found.', {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         setShowPopup(false);
       }
       setSuggestions([]);
@@ -51,7 +59,6 @@ const Navbar = () => {
     setSelectedProduct(suggestion);
     setShowPopup(true);
     setSuggestions([]);
-    setNotFound(false);
   };
 
   const handleClosePopup = () => {
@@ -60,8 +67,6 @@ const Navbar = () => {
   };
 
   const handleAddToCart = () => {
-    // Logic to add the selected product to the cart
-    // For example, you could call a context function to update the cart
     handleClosePopup();
   };
 
@@ -75,21 +80,35 @@ const Navbar = () => {
 
   const handleLogout = () => {
     setIsAuthenticated(false);
-    alert('You have been logged out.');
+    toast.success('LogOut Successfully.', {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    setTimeout(() => {
+      navigate('/cart');
+    }, 3000);
   };
 
   return (
-    <header className="bg-gray-100 py-4 shadow-md">
+    <header className="bg-gray-100 py-4 shadow-md fixed top-0 w-full z-50">
       <div className="container mx-auto flex justify-between items-center px-4">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-10">
+          <button className="text-4xl">
+            <FaArrowCircleLeft />
+          </button>
           <button className="text-4xl">
             <FaArrowCircleRight />
           </button>
         </div>
         <div className="relative flex flex-col">
           <div className="relative">
-          <div className="absolute ml-1 mt-3 text-lg">
-            <IoMdSearch/>
+            <div className="absolute ml-1 mt-3 text-lg">
+              <IoMdSearch />
             </div>
             <input
               type="text"
@@ -99,7 +118,6 @@ const Navbar = () => {
               placeholder="Search products..."
               className="w-60 pl-6 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-600"
             />
-            {/* <IoMdSearch className="absolute right-5 mt-3 text-lg text-gray-500" /> */}
           </div>
           {suggestions.length > 0 && (
             <ul className="absolute z-10 w-60 bg-white border border-gray-300 rounded-lg mt-1">
@@ -116,10 +134,31 @@ const Navbar = () => {
           )}
         </div>
         <nav className="flex items-center gap-12">
-          <ul className="flex items-center gap-6 text-xl">
-            <li><Link to="/home" className="hover:text-gray-700">Home</Link></li>
-            <li><Link to="/product" className="hover:text-gray-700">Products</Link></li>
-            <li><Link to="/contact" className="hover:text-gray-700">Contact</Link></li>
+          <ul className="flex items-center gap-6 text-2xl">
+            <li>
+              <Link
+                to="/home"
+                className={`${location.pathname === '/home' ? 'text-blue-600' : ''}`}
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/product"
+                className={`${location.pathname === '/product' ? 'text-blue-600' : ''}`}
+              >
+                Products
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/contact"
+                className={`${location.pathname === '/contact' ? 'text-blue-600' : ''}`}
+              >
+                Contact
+              </Link>
+            </li>
             <li>
               <button className="text-2xl flex items-center">
                 <IoMdCart />
@@ -147,14 +186,13 @@ const Navbar = () => {
           ) : (
             <button
               onClick={handleSignUp}
-              className="ml-4 text-lg bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-red-700"
+              className="text-lg bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-red-700"
             >
               Sign Up
             </button>
           )}
         </nav>
       </div>
-      {notFound && <div className="text-red-500 text-center mt-4">Product not found</div>}
       {showPopup && selectedProduct && (
         <ProductPopup
           product={selectedProduct}
@@ -162,6 +200,7 @@ const Navbar = () => {
           onAddToCart={handleAddToCart}
         />
       )}
+      <ToastContainer />
     </header>
   );
 };
