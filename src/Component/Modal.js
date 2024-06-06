@@ -1,6 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Modal = ({ show, onClose, cartItems }) => {
+  const [orderFormVisible, setOrderFormVisible] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    address: '',
+    phoneNumber: '',
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleFormSubmit = () => {
+    // Implement Khalti payment integration here
+    setOrderFormVisible(false);
+    onClose();
+  };
+
   if (!show) {
     return null;
   }
@@ -31,15 +52,82 @@ const Modal = ({ show, onClose, cartItems }) => {
             ))}
           </ul>
         )}
-        <div className="text-right mt-4">
-          <button
-            className="bg-red-500 text-white py-2 px-4 rounded"
-            onClick={onClose}
-          >
-            Close
-          </button>
+        <div className='flex justify-end'>
+          <div className="flex gap-5 mt-4">
+            <button
+              className="bg-green-500 text-white py-2 px-4 rounded"
+              onClick={() => setOrderFormVisible(true)}
+            >
+              Order
+            </button>
+            <button
+              className="bg-red-500 text-white py-2 px-4 rounded"
+              onClick={onClose}
+            >
+              Close
+            </button>
+          </div>
         </div>
       </div>
+      {orderFormVisible && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center">
+          <div className="bg-white p-5 rounded-lg shadow-lg w-2/3">
+            <h2 className="text-2xl font-bold mb-4">Order Form</h2>
+            <form>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="address">
+                  Address
+                </label>
+                <input
+                  type="text"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleInputChange}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="phoneNumber">
+                  Phone Number
+                </label>
+                <input
+                  type="text"
+                  name="phoneNumber"
+                  value={formData.phoneNumber}
+                  onChange={handleInputChange}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+              </div>
+            </form>
+            <div className="flex justify-end">
+              <button
+                className="bg-blue-500 text-white py-2 px-4 rounded"
+                onClick={handleFormSubmit}
+              >
+                Pay with Khalti
+              </button>
+              <button
+                className="bg-gray-500 text-white py-2 px-4 rounded ml-2"
+                onClick={() => setOrderFormVisible(false)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

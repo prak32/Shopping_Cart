@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "./Navbar";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
+import { toast } from "react-toastify";
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -52,10 +49,6 @@ const Contact = () => {
 
   return (
     <div>
-      <Navbar />
-      <div className="mt-24 text-center text-xl font-semibold">
-        If you want to query us please fill in the below Contact Form
-      </div>
       <div className="container mx-auto px-4 py-8 flex justify-center items-center">
         <div className="w-full max-w-md bg-gray-300 hover:bg-gray-400 shadow-md rounded-lg p-6">
           <div className="font-bold text-center text-2xl mb-3">Contact Me</div>
@@ -114,7 +107,6 @@ const Contact = () => {
           </div>
         </div>
       </div>
-      <ToastContainer />
     </div>
   );
 };

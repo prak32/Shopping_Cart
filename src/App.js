@@ -8,7 +8,6 @@ import Cart from './Component/Cart';
 import { CartProvider } from './Component/CartContext';
 import Product from './Component/Product';
 import Contact from './Component/Contact';
-
 const App = () => {
   return (
     <AuthProvider>
@@ -26,6 +25,7 @@ const App = () => {
         </Router>
       </CartProvider>
     </AuthProvider>
+    
   );
 };
 

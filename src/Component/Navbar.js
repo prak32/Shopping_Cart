@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa';
 import { IoMdCart, IoMdSearch } from 'react-icons/io';
 import { CartContext } from './CartContext';
 import ProductPopup from './ProductPopup';
@@ -97,13 +96,8 @@ const Navbar = () => {
   return (
     <header className="bg-gray-100 py-4 shadow-md fixed top-0 w-full z-50">
       <div className="container mx-auto flex justify-between items-center px-4">
-        <div className="flex items-center gap-10">
-          <button className="text-4xl">
-            <FaArrowCircleLeft />
-          </button>
-          <button className="text-4xl">
-            <FaArrowCircleRight />
-          </button>
+        <div className="flex items-center h-10 w-10">
+          <img src="logo.jpg" alt="logo" className='rounded-full'/>
         </div>
         <div className="relative flex flex-col">
           <div className="relative">
@@ -134,7 +128,7 @@ const Navbar = () => {
           )}
         </div>
         <nav className="flex items-center gap-12">
-          <ul className="flex items-center gap-6 text-2xl">
+          <ul className="flex gap-8 space-x-5 items-center text-xl">
             <li>
               <Link
                 to="/home"
@@ -169,7 +163,7 @@ const Navbar = () => {
               <li>
                 <button
                   onClick={handleSignIn}
-                  className="ml-8 text-lg bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-red-700"
+                  className="ml-8 text-sm bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-red-700"
                 >
                   LogIn
                 </button>
@@ -179,14 +173,14 @@ const Navbar = () => {
           {isAuthenticated ? (
             <button
               onClick={handleLogout}
-              className="ml-4 text-lg bg-red-600 text-white py-2 px-4 rounded-full hover:bg-red-700"
+              className="ml-4 text-sm bg-red-600 text-white py-2 px-4 rounded-full hover:bg-red-700"
             >
               LogOut
             </button>
           ) : (
             <button
               onClick={handleSignUp}
-              className="text-lg bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-red-700"
+              className="text-sm bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-red-700"
             >
               Sign Up
             </button>
