@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 const Modal = ({ show, onClose, cartItems }) => {
   const [orderFormVisible, setOrderFormVisible] = useState(false);
   const [formData, setFormData] = useState({
@@ -7,6 +6,7 @@ const Modal = ({ show, onClose, cartItems }) => {
     address: '',
     phoneNumber: '',
   });
+  const [toast, setToast] = useState({ show: false, message: '', type: '' });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -17,9 +17,16 @@ const Modal = ({ show, onClose, cartItems }) => {
   };
 
   const handleFormSubmit = () => {
-    // Implement Khalti payment integration here
-    setOrderFormVisible(false);
-    onClose();
+    const { name, address, phoneNumber } = formData;
+
+    if (!name || !address || !phoneNumber) {
+      setToast({ show: true, message: 'All fields are required!', type: 'error' });
+      setTimeout(() => setToast({ show: false, message: '', type: '' }), 3000);
+      return;
+    }
+    setOrderFormVisible(true);
+    setToast({ show: true, message: 'Payment Successful!', type: 'success' });
+    setTimeout(() => setToast({ show: false, message: '', type: '' }), 3000);
   };
 
   if (!show) {
@@ -71,8 +78,13 @@ const Modal = ({ show, onClose, cartItems }) => {
       </div>
       {orderFormVisible && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center">
-          <div className="bg-white p-5 rounded-lg shadow-lg w-2/3">
+          <div className="bg-white p-5 rounded-lg shadow-lg w-2/3 relative">
             <h2 className="text-2xl font-bold mb-4">Order Form</h2>
+            {toast.show && (
+              <div className={`absolute top-0 left-1/2 transform -translate-x-1/2 mt-2 px-4 py-2 rounded ${toast.type === 'error' ? 'bg-red-500' : 'bg-green-500'} text-white`}>
+                {toast.message}
+              </div>
+            )}
             <form>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
@@ -84,6 +96,7 @@ const Modal = ({ show, onClose, cartItems }) => {
                   value={formData.name}
                   onChange={handleInputChange}
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  required
                 />
               </div>
               <div className="mb-4">
@@ -96,6 +109,7 @@ const Modal = ({ show, onClose, cartItems }) => {
                   value={formData.address}
                   onChange={handleInputChange}
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  required
                 />
               </div>
               <div className="mb-4">
@@ -108,6 +122,7 @@ const Modal = ({ show, onClose, cartItems }) => {
                   value={formData.phoneNumber}
                   onChange={handleInputChange}
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  required
                 />
               </div>
             </form>
@@ -119,7 +134,7 @@ const Modal = ({ show, onClose, cartItems }) => {
                 Pay with Khalti
               </button>
               <button
-                className="bg-gray-500 text-white py-2 px-4 rounded ml-2"
+                className="bg-red-500 text-white py-2 px-4 rounded ml-2"
                 onClick={() => setOrderFormVisible(false)}
               >
                 Close

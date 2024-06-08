@@ -122,7 +122,7 @@ const Cart = () => {
       <section>
         <div className="text-center my-8">
           <div
-            className="mt-24 text-4xl font-bold pb-5 text-blue-500  "
+            className="mt-2 md:mt-24 text-4xl font-bold pb-5 text-blue-500  "
             style={{
               width: "86vw",
               overflow: "hidden",
@@ -273,8 +273,8 @@ const Cart = () => {
         <Modal show={showModal} onClose={closeModal} cartItems={cartItems} />
         <ContactForm />
       </section>
-      <footer className="flex gap-4 items-center justify-center text-xl bg-gray-200 py-4 w-full h-18">
-        <div className="items-center h-10 w-10">
+      <footer className="flex gap-4 items-center justify-center text-sm md:text-xl bg-gray-200 py-4 w-full h-18">
+        <div className="items-center h-7 w-7 md:h-10 md:w-10">
           <img src="logo.jpg" alt="logo" className="rounded-full" />
         </div>
         Prakash@copyright 2024Ⓒ

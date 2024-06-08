@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { IoMdCart, IoMdSearch } from 'react-icons/io';
+import { IoMdCart, IoMdSearch, IoMdMenu } from 'react-icons/io';
 import { CartContext } from './CartContext';
 import ProductPopup from './ProductPopup';
 import { useAuth } from './AuthContext';
@@ -13,6 +13,7 @@ const Navbar = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const { isAuthenticated, setIsAuthenticated } = useAuth();
@@ -93,15 +94,19 @@ const Navbar = () => {
     }, 3000);
   };
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
-    <header className="bg-gray-100 py-4 shadow-md fixed top-0 w-full z-50">
+    <header className="bg-gray-100 py-2 shadow-md md:py-4 md:fixed md:top-0 md:w-full md:z-50">
       <div className="container mx-auto flex justify-between items-center px-4">
-        <div className="flex items-center h-10 w-10">
+        <div className="flex items-center h-7 w-7 md:h-10 md:w-10">
           <img src="logo.jpg" alt="logo" className='rounded-full'/>
         </div>
-        <div className="relative flex flex-col">
-          <div className="relative">
-            <div className="absolute ml-1 mt-3 text-lg">
+        <div className="relative flex-1 md:flex md:items-center md:justify-center">
+          <div className="relative w-full md:w-60">
+            <div className="absolute ml-5 mt-2 md:ml-1 md:mt-3 md:text-lg">
               <IoMdSearch />
             </div>
             <input
@@ -110,11 +115,11 @@ const Navbar = () => {
               onChange={handleSearchChange}
               onKeyDown={handleSearchKeyDown}
               placeholder="Search products..."
-              className="w-60 pl-6 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="w-60 ml-4 h-8 pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-600 md:w-full md:ml-0 md:pl-10"
             />
           </div>
           {suggestions.length > 0 && (
-            <ul className="absolute z-10 w-60 bg-white border border-gray-300 rounded-lg mt-1">
+            <ul className="absolute z-10 w-full md:w-60 bg-white border border-gray-300 rounded-lg mt-1">
               {suggestions.map(suggestion => (
                 <li
                   key={suggestion.id}
@@ -127,8 +132,13 @@ const Navbar = () => {
             </ul>
           )}
         </div>
-        <nav className="flex items-center gap-12">
-          <ul className="flex gap-8 space-x-5 items-center text-xl">
+        <div className="md:hidden">
+          <button onClick={toggleMenu} className="text-2xl">
+            <IoMdMenu />
+          </button>
+        </div>
+        <nav className={`md:flex md:items-center ${menuOpen ? 'block' : 'hidden'}`}>
+          <ul className="flex flex-col text-sm md:flex-row gap-1 md:gap-8 space-y-4 md:space-y-0 items-center md:text-xl mt-4 md:mt-0">
             <li>
               <Link
                 to="/home"
@@ -154,7 +164,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <button className="text-2xl flex items-center">
+              <button className="md:text-2xl flex items-center">
                 <IoMdCart />
                 <span className="ml-2">{totalItemsInCart}</span>
               </button>
@@ -163,7 +173,7 @@ const Navbar = () => {
               <li>
                 <button
                   onClick={handleSignIn}
-                  className="ml-8 text-sm bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-red-700"
+                  className="ml-4 text-xs bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-red-700 md:text-sm"
                 >
                   LogIn
                 </button>
@@ -173,14 +183,14 @@ const Navbar = () => {
           {isAuthenticated ? (
             <button
               onClick={handleLogout}
-              className="ml-4 text-sm bg-red-600 text-white py-2 px-4 rounded-full hover:bg-red-700"
+              className="ml-4 text-xs bg-red-600 text-white py-2 px-4 rounded-full hover:bg-red-700 md:text-sm"
             >
               LogOut
             </button>
           ) : (
             <button
               onClick={handleSignUp}
-              className="text-sm bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-red-700"
+              className="ml-5 text-xs bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-red-700 mt-4 md:mt-0 md:ml-3 md:text-sm"
             >
               Sign Up
             </button>

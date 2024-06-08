@@ -38,7 +38,7 @@ const Login = () => {
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-black">
       <ParticlesComponent />
-      <div className="relative max-w-lg mx-auto p-8 bg-gray-600 shadow-md rounded-lg border border-gray-100">
+      <div className="relative max-w-lg mx-auto p-8 bg-gray-800 shadow-md rounded-lg border border-gray-100">
         <h2 className="text-3xl font-bold mb-4 text-center h-10 text-white">Login</h2>
         <form onSubmit={handleLogin} className="space-y-4">
           <input

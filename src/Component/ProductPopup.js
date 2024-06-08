@@ -15,10 +15,12 @@ const ProductPopup = ({ product, onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-80 h-auto max-w-md mx-auto">
+      <div className="bg-gray-200 p-6 rounded-lg shadow-lg w-80 h-auto max-w-md mx-auto">
         <h2 className="text-center text-2xl font-semibold mb-4">{product.title}</h2>
         <img src={product.img} alt={product.title} className="w-36 h-40 mb-2 mx-auto"/>
-        <p className="justify-center font-semibold pb-4 bg-gradient-to-r from-sky-600 via-red-700 to-purple-900 inline-block text-transparent bg-clip-text">{product.description}</p>
+        <p className="flex justify-center font-semibold pb-4 bg-gradient-to-r from-sky-600 via-red-700 to-purple-900 text-transparent bg-clip-text">{product.description}</p>
+        <div className="flex justify-center text-white font-semibold italic border border-blue-400 rounded-full px-3 bg-gradient-to-r from-blue-300 via-pink-400 to-orange-600">${product.price}</div>
+
         <div className="flex justify-between items-center mt-4">
           <button 
             onClick={() => {
@@ -34,7 +36,7 @@ const ProductPopup = ({ product, onClose }) => {
           </button>
           <button 
             onClick={onClose} 
-            className="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600"
+            className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600"
           >
             Cancel
           </button>
