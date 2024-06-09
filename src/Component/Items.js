@@ -130,8 +130,8 @@ const Items = ({ id, title, description, price, img, quantity }) => {
 
   return (
     <div>
-      <div className="pl-24" key={id}>
-        <div className="ml-12">
+      <div className="pl-36 md:pl-24" key={id}>
+        <div className="ml-16 md:ml-12">
           <motion.div
             className="relative"
             onMouseEnter={handleMouseEnter}
@@ -145,7 +145,7 @@ const Items = ({ id, title, description, price, img, quantity }) => {
             style={{ perspective: "1000px" }}
           >
             <motion.img
-              className="h-52 w-44 rounded backface-hidden"
+              className="h-48 w-40 md:h-52 md:w-44 rounded backface-hidden"
               src={img}
               alt={title}
               style={{ display: flipped ? "none" : "block" }}
@@ -166,14 +166,14 @@ const Items = ({ id, title, description, price, img, quantity }) => {
             {title}
           </h1>
         </div>
-        <div className="overflow-hidden w-[16vw]">
+        <div className="overflow-hidden w-[32vw] md:w-[16vw]">
           <motion.div
             initial={{ x: "0%" }}
             animate={{ x: "100%" }}
             transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
           >
             <div className="pl-14">
-              <p className="text-lg font-semibold bg-gradient-to-r from-sky-500 via-red-600 to-purple-950 inline-block text-transparent bg-clip-text">
+              <p className="text-sm md:text-lg font-semibold bg-gradient-to-r from-sky-500 via-red-600 to-purple-950 inline-block text-transparent bg-clip-text">
                 {description}
               </p>
             </div>

@@ -50,8 +50,8 @@ const Contact = () => {
   return (
     <div>
       <div className="container mx-auto px-4 py-8 flex justify-center items-center">
-        <div className="w-full max-w-md bg-gray-300 hover:bg-gray-400 shadow-md rounded-lg p-6">
-          <div className="font-bold text-center text-2xl mb-3">Contact Me</div>
+        <div className="w-80 md:w-full max-w-md bg-gray-300 hover:bg-gray-400 shadow-md rounded-lg p-6">
+          <div className="font-bold text-center text-xl md:text-2xl mb-3">Contact Me</div>
           {formStatus === "success" && (
             <div className="py-2 text-center text-green-600 font-bold">
               Form submitted successfully!
@@ -92,17 +92,17 @@ const Contact = () => {
             </div>
             <div className="mb-3 text-center">
               <button
-                className="active:bg-blue-600 hover:shadow-lg focus:outline-none px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear bg-blue-500 rounded shadow outline-none"
+                className="active:bg-blue-600 hover:shadow-lg focus:outline-none px-6 py-3 mb-1 mr-1 text-xs md:text-sm font-bold text-white uppercase transition-all duration-150 ease-linear bg-blue-500 rounded shadow outline-none"
                 type="submit"
               >
                 Send a message
               </button>
             </div>
           </form>
-          <div className="text-center">
+          <div className="text-center text-sm md:text-md">
             The location to get near the shop is given below:
             <a href={mapUrl} target="_blank" rel="noopener noreferrer">
-              <img src="map.png" alt="map" className="mt-2 border border-gray-400 ml-24 h-36 w-52" />
+              <img src="map.png" alt="map" className="mt-2 border border-gray-400 ml-10 h-32 w-48 md:ml-24 md:h-36 md:w-52" />
             </a>
           </div>
         </div>

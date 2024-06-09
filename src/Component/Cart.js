@@ -7,8 +7,6 @@ import Navbar from "./Navbar";
 import { useAuth } from "./AuthContext";
 import { toast } from "react-toastify";
 import ContactForm from "./ContactForm";
-import "/ShoppingCart/addTocart/src/App.css";
-
 const Cart = () => {
   const {
     item,
@@ -122,7 +120,7 @@ const Cart = () => {
       <section>
         <div className="text-center my-8">
           <div
-            className="mt-2 md:mt-24 text-4xl font-bold pb-5 text-blue-500  "
+            className="mt-2 text-2xl md:mt-24 md:text-4xl font-bold pb-5 text-blue-500  "
             style={{
               width: "86vw",
               overflow: "hidden",
@@ -143,7 +141,7 @@ const Cart = () => {
               Welcome to Our e-Commerce Website
             </motion.span>
           </div>
-          <div className="flex flex-col text-xl italic">
+          <div className="flex flex-col text-md md:text-xl italic">
             <p>
               "Browse through or curated selection of Apple’s flagship
               smartphones.
@@ -161,10 +159,10 @@ const Cart = () => {
         <hr />
         <section className="my-8">
           <div className="text-center">
-            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-sky-600 via-blue-700 to-purple-950 inline-block text-transparent bg-clip-text">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-sky-600 via-blue-700 to-purple-950 inline-block text-transparent bg-clip-text">
               IPhone Specifications
             </h2>
-            <p className="text-lg mb-6">
+            <p className="text-sm md:text-lg mb-6">
               Discover the features and specifications of the latest iPhones.
               Each model is designed to offer the best user experience with
               state-of-the-art technology.
@@ -175,25 +173,25 @@ const Cart = () => {
               {products.map((product) => (
                 <div
                   key={product.id}
-                  className="bg-gray-100 rounded-lg shadow-lg w-96 overflow-hidden hover:bg-gray-200 hover:shadow-xl hover:scale-105 transition-all duration-300"
+                  className="bg-gray-100 rounded-lg shadow-lg w-80 md:w-96 overflow-hidden hover:bg-gray-200 hover:shadow-xl hover:scale-105 transition-all duration-300"
                 >
                   <img
                     src={product.img}
                     alt={product.title}
-                    className="w-44 h-56 rounded ml-24"
+                    className=" w-36 h-44 md:w-44 md:h-56 rounded ml-20 md:ml-24"
                   />
                   <div className="p-4">
-                    <h2 className="text-center text-xl font-bold text-gray-800">
+                    <h2 className="text-center text-lg md:text-xl font-bold text-gray-800">
                       {product.title}
                     </h2>
-                    <ul className="ml-20 mt-2 text-gray-600">
+                    <ul className="text-sm md:text-md ml-20 mt-2  text-gray-600">
                       {product.specs.map((spec, index) => (
                         <li key={index} className="mt-1">
                           {spec}
                         </li>
                       ))}
                     </ul>
-                    <p className="text-center mt-4 text-lg font-semibold text-gray-800">
+                    <p className="text-center mt-4 text-md md:text-lg font-semibold text-gray-800">
                       Price: ${product.price}
                     </p>
                   </div>
@@ -205,16 +203,16 @@ const Cart = () => {
         <hr />
         <div className="flex justify-center">
           <div className="flex flex-col gap-1 p-1">
-            <h1 className="font-bold text-4xl bg-gradient-to-r from-sky-600 via-blue-700 to-purple-950 inline-block text-transparent bg-clip-text h-12 pl-14">
+            <h1 className="font-bold text-2xl md:text-4xl bg-gradient-to-r from-sky-600 via-blue-700 to-purple-950 inline-block text-transparent bg-clip-text h-12 pl-14">
               Shopping Cart
             </h1>
-            <div className="overflow-hidden w-[24vw]">
+            <div className="overflow-hidden w-[44vw] md:w-[24vw]">
               <motion.div
                 initial={{ x: "0%" }}
                 animate={{ x: "100%" }}
                 transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
               >
-                <p className="text-lg italic">
+                <p className="text-sm md:text-lg italic">
                   You have{" "}
                   <span className="font-semibold">{totalItemsInCart}</span>{" "}
                   items in your shopping cart
@@ -238,7 +236,7 @@ const Cart = () => {
         </div>
         <div className="flex justify-end p-3">
           <button
-            className="font-bold text-lg border border-blue-600 rounded-full w-40 bg-gradient-to-r from-green-600 via-blue-700 to-purple-950 inline-block text-transparent bg-clip-text"
+            className="font-bold text-md md:text-lg border border-blue-600 rounded-full w-36 md:w-40 bg-gradient-to-r from-green-600 via-blue-700 to-purple-950 inline-block text-transparent bg-clip-text"
             onClick={() => {
               if (isAuthenticated) {
                 handleAddToCart();
@@ -254,7 +252,7 @@ const Cart = () => {
         </div>
         <div className="flex justify-end p-3">
           <button
-            className="font-bold border border-green-500 text-lg rounded-full w-40 bg-gradient-to-r from-red-600 via-pink-700 to-red-950 inline-block text-transparent bg-clip-text"
+            className="font-bold border border-green-500 text-md md:text-lg rounded-full w-36 md:w-40 bg-gradient-to-r from-red-600 via-pink-700 to-red-950 inline-block text-transparent bg-clip-text"
             onClick={() => {
               if (isAuthenticated) {
                 handleCheckout();
@@ -267,7 +265,7 @@ const Cart = () => {
           </button>
         </div>
         <hr />
-        <div className="flex justify-center font-bold text-4xl bg-gradient-to-r from-sky-600 via-blue-700 to-purple-950 inline-block text-transparent bg-clip-text">
+        <div className="flex justify-center font-bold text-2xl md:text-4xl bg-gradient-to-r from-sky-600 via-blue-700 to-purple-950 text-transparent bg-clip-text">
           Contact Form
         </div>
         <Modal show={showModal} onClose={closeModal} cartItems={cartItems} />
