@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { IoMdCart, IoMdSearch, IoMdMenu } from 'react-icons/io';
+import { IoMdCart, IoMdSearch, IoMdMenu, IoMdClose } from 'react-icons/io';
 import { CartContext } from './CartContext';
 import ProductPopup from './ProductPopup';
 import { useAuth } from './AuthContext';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = () => {
@@ -98,8 +98,13 @@ const Navbar = () => {
     setMenuOpen(!menuOpen);
   };
 
+  const clearSearch = () => {
+    setSearchQuery('');
+    setSuggestions([]);
+  };
+
   return (
-    <header className="bg-gray-100 py-2 shadow-md md:py-4 md:fixed md:top-0 md:w-full md:z-50">
+    <header className="fixed top-0 w-full z-10 bg-gray-100 py-2 shadow-md md:py-4 md:fixed md:top-0 md:w-full md:z-50">
       <div className="container mx-auto flex justify-between items-center px-4">
         <div className="flex items-center h-7 w-7 md:h-10 md:w-10">
           <img src="logo.jpg" alt="logo" className='rounded-full'/>
@@ -115,11 +120,19 @@ const Navbar = () => {
               onChange={handleSearchChange}
               onKeyDown={handleSearchKeyDown}
               placeholder="Search products..."
-              className="w-60 ml-4 h-8 pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-600 md:w-full md:ml-0 md:pl-10"
+              className="w-52 md:w-60 ml-4 pl-10 pr-10 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-600 md:ml-0 md:pl-10 md:py-2"
             />
+            {searchQuery && (
+              <button
+                className="absolute top-1 left-48 text-gray-500 md:top-3 md:right-3"
+                onClick={clearSearch}
+              >
+                <IoMdClose />
+              </button>
+            )}
           </div>
           {suggestions.length > 0 && (
-            <ul className="absolute z-10 w-full md:w-60 bg-white border border-gray-300 rounded-lg mt-1">
+            <ul className="absolute z-10 w-48 ml-6 mt-2 bg-white border border-gray-300 rounded-lg md:ml-1 md:z-10 md:w-60 md:mt-80">
               {suggestions.map(suggestion => (
                 <li
                   key={suggestion.id}
@@ -137,7 +150,7 @@ const Navbar = () => {
             <IoMdMenu />
           </button>
         </div>
-        <nav className={`md:flex md:items-center ${menuOpen ? 'block' : 'hidden'}`}>
+        <nav className="hidden md:flex md:items-center">
           <ul className="flex flex-col text-sm md:flex-row gap-1 md:gap-8 space-y-4 md:space-y-0 items-center md:text-xl mt-4 md:mt-0">
             <li>
               <Link
@@ -164,7 +177,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <button className="md:text-2xl flex items-center">
+              <button className="md:text-2xl md:ml-4 flex items-center">
                 <IoMdCart />
                 <span className="ml-2">{totalItemsInCart}</span>
               </button>
@@ -197,6 +210,71 @@ const Navbar = () => {
           )}
         </nav>
       </div>
+      <nav className={`fixed top-0 right-0 w-44 h-80 bg-gray-100 shadow-md transform ${menuOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out md:hidden`}>
+        <button onClick={toggleMenu} className="absolute top-4 right-4 text-2xl">
+          <IoMdClose />
+        </button>
+        <ul className="flex flex-col text-sm gap-4 p-4 mt-8">
+          <li>
+            <Link
+              to="/home"
+              onClick={toggleMenu}
+              className={`${location.pathname === '/home' ? 'text-blue-600' : ''}`}
+            >
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/product"
+              onClick={toggleMenu}
+              className={`${location.pathname === '/product' ? 'text-blue-600' : ''}`}
+            >
+              Products
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/contact"
+              onClick={toggleMenu}
+              className={`${location.pathname === '/contact' ? 'text-blue-600' : ''}`}
+            >
+              Contact
+            </Link>
+          </li>
+          <li>
+            <button className="text-lg md:text-2xl flex items-center">
+              <IoMdCart />
+              <span className="ml-2">{totalItemsInCart}</span>
+            </button>
+          </li>
+          {!isAuthenticated && (
+            <li>
+              <button
+                onClick={handleSignIn}
+                className="text-xs bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-red-700 md:text-sm"
+              >
+                LogIn
+              </button>
+            </li>
+          )}
+        </ul>
+        {isAuthenticated ? (
+          <button
+            onClick={handleLogout}
+            className="text-xs bg-red-600 text-white py-2 px-4 rounded-full hover:bg-red-700 md:text-sm"
+          >
+            LogOut
+          </button>
+        ) : (
+          <button
+            onClick={handleSignUp}
+            className="text-xs bg-blue-600 text-white py-2 px-4 ml-4 rounded-full hover:bg-red-700 mt-4 md:mt-0 md:text-sm"
+          >
+            Sign Up
+          </button>
+        )}
+      </nav>
       {showPopup && selectedProduct && (
         <ProductPopup
           product={selectedProduct}

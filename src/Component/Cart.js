@@ -120,7 +120,7 @@ const Cart = () => {
       <section>
         <div className="text-center my-8">
           <div
-            className="mt-2 text-2xl md:mt-24 md:text-4xl font-bold pb-5 text-blue-500  "
+            className="mt-16 text-2xl md:mt-24 md:text-4xl font-bold pb-5 text-blue-500  "
             style={{
               width: "86vw",
               overflow: "hidden",

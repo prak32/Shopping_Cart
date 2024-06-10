@@ -26,16 +26,16 @@ const Product = () => {
       <section className="my-8">
         <div className="flex justify-center">
           <div className="flex flex-col gap-1 p-1">
-            <h1 className="mt-14 font-bold text-4xl bg-gradient-to-r from-sky-600 via-blue-700 to-purple-950 inline-block text-transparent bg-clip-text h-12 pl-14">
+            <h1 className="mt-6 md:mt-14 font-bold text-2xl md:text-4xl bg-gradient-to-r from-sky-600 via-blue-700 to-purple-950 inline-block text-transparent bg-clip-text h-12 pl-14">
               Products for Shopping
             </h1>
-            <div className="overflow-hidden w-[24vw]">
+            <div className="overflow-hidden w-[48vw] md:w-[24vw]">
               <motion.div
                 initial={{ x: "0%" }}
                 animate={{ x: "100%" }}
                 transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
               >
-                <p className="text-lg italic">
+                <p className="text-md md:text-lg italic">
                   You have{" "}
                   <span className="font-semibold">{totalItemsInCart}</span>{" "}
                   items in your shopping cart
@@ -62,7 +62,7 @@ const Product = () => {
       <footer>
         <div className="flex justify-end p-3">
           <button
-            className="font-bold text-lg border border-blue-600 rounded-full w-40 bg-gradient-to-r from-green-600 via-blue-700 to-purple-950 inline-block text-transparent bg-clip-text"
+            className="font-bold text-md md:text-lg border border-blue-600 rounded-full w-36 md:w-40 bg-gradient-to-r from-green-600 via-blue-700 to-purple-950 inline-block text-transparent bg-clip-text"
             onClick={() => {
               if (isAuthenticated) {
                 handleAddToCart();
@@ -76,7 +76,7 @@ const Product = () => {
         </div>
         <div className="flex justify-end p-3">
           <button
-            className="font-bold border border-green-500 text-lg rounded-full w-40 bg-gradient-to-r from-red-600 via-pink-700 to-red-950 inline-block text-transparent bg-clip-text"
+            className="font-bold border border-green-500 text-md md:text-lg rounded-full w-36 md:w-40 bg-gradient-to-r from-red-600 via-pink-700 to-red-950 inline-block text-transparent bg-clip-text"
             onClick={() => {
               if (isAuthenticated) {
                 handleCheckout();

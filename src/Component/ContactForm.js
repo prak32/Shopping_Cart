@@ -51,7 +51,7 @@ const Contact = () => {
     <div>
       <div className="container mx-auto px-4 py-8 flex justify-center items-center">
         <div className="w-80 md:w-full max-w-md bg-gray-300 hover:bg-gray-400 shadow-md rounded-lg p-6">
-          <div className="font-bold text-center text-xl md:text-2xl mb-3">Contact Me</div>
+          <div className="font-bold text-center text-xl md:text-3xl mb-3">Contact Me</div>
           {formStatus === "success" && (
             <div className="py-2 text-center text-green-600 font-bold">
               Form submitted successfully!
@@ -99,7 +99,7 @@ const Contact = () => {
               </button>
             </div>
           </form>
-          <div className="text-center text-sm md:text-md">
+          <div className="text-center text-sm md:text-lg">
             The location to get near the shop is given below:
             <a href={mapUrl} target="_blank" rel="noopener noreferrer">
               <img src="map.png" alt="map" className="mt-2 border border-gray-400 ml-10 h-32 w-48 md:ml-24 md:h-36 md:w-52" />
