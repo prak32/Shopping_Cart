@@ -29,7 +29,7 @@ const Product = () => {
             <h1 className="mt-6 md:mt-14 font-bold text-2xl md:text-4xl bg-gradient-to-r from-sky-600 via-blue-700 to-purple-950 inline-block text-transparent bg-clip-text h-12 pl-14">
               Products for Shopping
             </h1>
-            <div className="overflow-hidden w-[48vw] md:w-[24vw]">
+            <div className="overflow-hidden w-[52vw] md:w-[24vw]">
               <motion.div
                 initial={{ x: "0%" }}
                 animate={{ x: "100%" }}
