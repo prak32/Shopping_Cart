@@ -82,7 +82,7 @@ const Modal = ({ show, onClose, cartItems }) => {
           <div className="bg-white p-5 rounded-lg shadow-lg w-2/3 relative">
             <h2 className="text-2xl font-bold mb-4">Order Form</h2>
             {toast.show && (
-              <div className={`absolute top-0 mt-20 ml-16 w-40 px-4 py-2 rounded text-xs md:text-sm md:ml-96 border border-red-900 ${toast.type === 'error' ? 'bg-red-500' : 'bg-green-500'} text-white`}>
+              <div className={`absolute top-0 mt-14 ml-16 w-40 px-4 py-2 rounded text-xs text-center md:text-lg md:ml-96 md:w-60 md:text-center md:mt-4 ${toast.type === 'error' ? 'bg-red-500' : 'bg-green-500'} text-white`}>
                 {toast.message}
               </div>
             )}
@@ -129,13 +129,13 @@ const Modal = ({ show, onClose, cartItems }) => {
             </form>
             <div className="flex justify-end">
               <button
-                className="bg-blue-500 text-white py-2 px-4 rounded"
+                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
                 onClick={handleFormSubmit}
               >
-                Pay with Khalti
+                Pay with e-Wallet
               </button>
               <button
-                className="bg-red-500 text-white py-2 px-4 rounded ml-2"
+                className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded ml-2"
                 onClick={() => setOrderFormVisible(false)}
               >
                 Close
