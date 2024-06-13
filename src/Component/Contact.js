@@ -14,11 +14,16 @@ const Contact = () => {
 
   useEffect(() => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const { latitude, longitude } = position.coords;
-        const url = `https://www.google.com/maps/search/iPhone+shop/@${latitude},${longitude},15z`;
-        setMapUrl(url);
-      });
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          const url = `https://www.google.com/maps/search/iPhone+shop/@${latitude},${longitude},15z`;
+          setMapUrl(url);
+        },
+        (error) => {
+          toast.error("Geolocation is not supported by this browser.");
+        }
+      );
     } else {
       toast.error("Geolocation is not supported by this browser.");
     }

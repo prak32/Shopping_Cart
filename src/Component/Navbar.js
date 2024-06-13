@@ -196,7 +196,7 @@ const Navbar = () => {
           {isAuthenticated ? (
             <button
               onClick={handleLogout}
-              className="ml-4 text-xs bg-red-600 text-white py-2 px-4 rounded-full hover:bg-red-700 md:text-sm"
+              className="ml-4 text-xs bg-red-600 text-white py-2 px-4 rounded-full hover:bg-red-700 md:hover:shadow-xl md:text-sm"
             >
               LogOut
             </button>
@@ -210,7 +210,7 @@ const Navbar = () => {
           )}
         </nav>
       </div>
-      <nav className={`fixed top-0 right-0 w-44 h-80 bg-gray-100 shadow-md transform ${menuOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out md:hidden`}>
+      <nav className={`fixed top-0 right-0 w-44 h-80 bg-gray-100 shadow-md transform ${menuOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-500 ease-in-out md:hidden`}>
         <button onClick={toggleMenu} className="absolute top-4 right-4 text-2xl">
           <IoMdClose />
         </button>

@@ -4,10 +4,12 @@ import { useAuth } from './AuthContext';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ParticlesComponent from './ParticlesComponent';
+import ResetPasswordModal from './ResetPasswordModal';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showResetModal, setShowResetModal] = useState(false);
   const navigate = useNavigate();
   const { setIsAuthenticated } = useAuth();
 
@@ -29,7 +31,7 @@ const Login = () => {
       });
       setTimeout(() => {
         navigate('/cart');
-      }, 3000); // Delay navigation to show the toast
+      }, 3000);
     } else {
       toast.error('Invalid username or password');
     }
@@ -38,7 +40,7 @@ const Login = () => {
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-black">
       <ParticlesComponent />
-      <div className="relative max-w-lg mx-auto p-8 bg-gray-800 shadow-md rounded-lg border border-gray-100">
+      <div className="relative max-w-lg mx-auto p-8 bg-gray-800 shadow-md rounded-lg">
         <h2 className="text-3xl font-bold mb-4 text-center h-10 text-white">Login</h2>
         <form onSubmit={handleLogin} className="space-y-4">
           <input
@@ -61,8 +63,18 @@ const Login = () => {
             Login
           </button>
         </form>
+        <p className="text-center text-white mt-4">
+         {' '}
+          <button
+            className="text-blue-500 hover:underline"
+            onClick={() => setShowResetModal(true)}
+          >
+            Forgot Password?
+          </button>
+        </p>
       </div>
       <ToastContainer />
+      {showResetModal && <ResetPasswordModal setShowResetModal={setShowResetModal} />}
     </div>
   );
 };

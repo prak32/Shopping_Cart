@@ -26,16 +26,16 @@ const Product = () => {
       <section className="my-8">
         <div className="flex justify-center">
           <div className="flex flex-col gap-1 p-1">
-            <h1 className="mt-6 md:mt-14 font-bold text-2xl md:text-4xl bg-gradient-to-r from-sky-600 via-blue-700 to-purple-950 inline-block text-transparent bg-clip-text h-12 pl-14">
+            <h1 className="mt-6 md:mt-14 font-bold text-2xl md:text-4xl bg-gradient-to-r from-sky-600 via-blue-700 to-purple-950 inline-block text-transparent bg-clip-text h-12 pl-4 md:pl-14">
               Products for Shopping
             </h1>
-            <div className="overflow-hidden w-[52vw] md:w-[24vw]">
+            <div className="overflow-hidden w-[58vw] md:w-[24vw]">
               <motion.div
                 initial={{ x: "0%" }}
                 animate={{ x: "100%" }}
-                transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
+                transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
               >
-                <p className="text-md md:text-lg italic">
+                <p className="text-md md:text-md italic">
                   You have{" "}
                   <span className="font-semibold">{totalItemsInCart}</span>{" "}
                   items in your shopping cart

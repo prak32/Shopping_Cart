@@ -89,11 +89,10 @@ const Cart = () => {
       img: "https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-15-plus-.jpg",
       quantity: 0,
       specs: [
-        "6.7-inch Super Retina XDR display",
+        "6.7-inch Super Retina XDR display with pro motion",
         "A17 Bionic chip",
-        "Dual 12MP Ultra Wide and Wide cameras",
+        "Dual 12MP Ultra Wide  and Telephoto camera",
         "Up to 26 hours of talk time",
-        "3200mah Battery",
         "128GB, 256GB, 512GB",
       ],
     },
@@ -203,16 +202,16 @@ const Cart = () => {
         <hr />
         <div className="flex justify-center">
           <div className="flex flex-col gap-1 p-1">
-            <h1 className="font-bold text-2xl md:text-4xl bg-gradient-to-r from-sky-600 via-blue-700 to-purple-950 inline-block text-transparent bg-clip-text h-12 pl-14">
+            <h1 className="font-bold text-2xl md:text-4xl bg-gradient-to-r from-sky-600 via-blue-700 to-purple-950 inline-block text-transparent bg-clip-text h-12 pl-8 md:pl-12">
               Shopping Cart
             </h1>
-            <div className="overflow-hidden w-[44vw] md:w-[24vw]">
+            <div className="overflow-hidden w-[44vw] md:w-[28vw]">
               <motion.div
                 initial={{ x: "0%" }}
                 animate={{ x: "100%" }}
                 transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
               >
-                <p className="text-sm md:text-lg italic">
+                <p className="text-sm md:text-md italic">
                   You have{" "}
                   <span className="font-semibold">{totalItemsInCart}</span>{" "}
                   items in your shopping cart

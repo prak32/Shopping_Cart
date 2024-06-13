@@ -130,8 +130,8 @@ const Items = ({ id, title, description, price, img, quantity }) => {
 
   return (
     <div>
-      <div className="pl-36 md:pl-24" key={id}>
-        <div className="ml-16 md:ml-12">
+      <div className="pl-28 md:pl-24" key={id}>
+        <div className="ml-14 md:ml-12">
           <motion.div
             className="relative"
             onMouseEnter={handleMouseEnter}
@@ -166,7 +166,7 @@ const Items = ({ id, title, description, price, img, quantity }) => {
             {title}
           </h1>
         </div>
-        <div className="overflow-hidden w-[32vw] md:w-[16vw]">
+        <div className="overflow-hidden w-[40vw] md:w-[16vw]">
           <motion.div
             initial={{ x: "0%" }}
             animate={{ x: "100%" }}
