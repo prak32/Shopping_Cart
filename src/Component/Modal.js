@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 const Modal = ({ show, onClose, cartItems }) => {
   const [orderFormVisible, setOrderFormVisible] = useState(false);
   const [formData, setFormData] = useState({
@@ -51,7 +52,7 @@ const Modal = ({ show, onClose, cartItems }) => {
                   <p className='text-sm md:text-lg'>{item.description}</p>
                 </div>
                 <div className="flex flex-col ml-6 w-44 text-sm md:text-lg">
-                  <h1 className="font-semibold ">Price: ${item.price}</h1>
+                  <h1 className="font-semibold">Price: ${item.price}</h1>
                   <h1 className="font-semibold">Quantity: {item.quantity}</h1>
                   <h1 className='font-semibold'>Total Price: ${(item.price * item.quantity).toFixed(2)}</h1>
                 </div>
@@ -81,7 +82,7 @@ const Modal = ({ show, onClose, cartItems }) => {
           <div className="bg-white p-5 rounded-lg shadow-lg w-2/3 relative">
             <h2 className="text-2xl font-bold mb-4">Order Form</h2>
             {toast.show && (
-              <div className={`absolute top-0 left-1/2 transform -translate-x-1/2 mt-2 px-4 py-2 rounded ${toast.type === 'error' ? 'bg-red-500' : 'bg-green-500'} text-white`}>
+              <div className={`absolute top-0 text-center mt-2 ml-40 px-4 py-2 rounded text-xs md:text-sm md:ml-96 border border-red-900 ${toast.type === 'error' ? 'bg-red-500' : 'bg-green-500'} text-white`}>
                 {toast.message}
               </div>
             )}
