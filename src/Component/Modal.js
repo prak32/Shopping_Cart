@@ -82,7 +82,7 @@ const Modal = ({ show, onClose, cartItems }) => {
           <div className="bg-white p-5 rounded-lg shadow-lg w-2/3 relative">
             <h2 className="text-2xl font-bold mb-4">Order Form</h2>
             {toast.show && (
-              <div className={`absolute top-0 text-center mt-2 ml-40 px-4 py-2 rounded text-xs md:text-sm md:ml-96 border border-red-900 ${toast.type === 'error' ? 'bg-red-500' : 'bg-green-500'} text-white`}>
+              <div className={`absolute top-0 text-center mt-2 ml-32 px-4 py-2 rounded text-xs md:text-sm md:ml-96 border border-red-900 ${toast.type === 'error' ? 'bg-red-500' : 'bg-green-500'} text-white`}>
                 {toast.message}
               </div>
             )}

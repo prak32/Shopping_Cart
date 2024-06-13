@@ -131,7 +131,7 @@ const Items = ({ id, title, description, price, img, quantity }) => {
   return (
     <div>
       <div className="pl-28 md:pl-24" key={id}>
-        <div className="ml-4 md:ml-12">
+        <div className="ml-9 md:ml-12">
           <motion.div
             className="relative"
             onMouseEnter={handleMouseEnter}
@@ -161,7 +161,7 @@ const Items = ({ id, title, description, price, img, quantity }) => {
             />
           </motion.div>
         </div>
-        <div className="mt-2 pl-14 md:pl-24">
+        <div className="mt-2 pl-16 md:pl-24">
           <h1 className="font-semibold w-24 break-words text-center text-lg">
             {title}
           </h1>
@@ -179,12 +179,12 @@ const Items = ({ id, title, description, price, img, quantity }) => {
             </div>
           </motion.div>
         </div>
-        <div className="ml-4 md:ml-14 p-3 pl-6">
+        <div className="ml-6 md:ml-16 p-3 pl-6">
           <p className="font-semibold italic border border-blue-400 rounded-full w-32 px-3 bg-gradient-to-r from-blue-300 via-pink-400 to-orange-600">
             Price:${price}
           </p>
         </div>
-        <div className="flex gap-11 pl-10 md:pl-20 text-lg">
+        <div className="flex gap-11 pl-12 md:pl-20 text-lg">
           <button
             onClick={handleDecrement}
             className={`${
