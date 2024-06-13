@@ -34,9 +34,9 @@ const Modal = ({ show, onClose, cartItems }) => {
   }
 
   return (
-    <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center">
-      <div className="bg-white p-5 rounded-lg shadow-lg w-2/3">
-        <h2 className="text-2xl font-bold mb-4">Cart Details</h2>
+    <div className="fixed inset-0 z-10 bg-gray-800 bg-opacity-75 flex justify-center items-center">
+      <div className="bg-white p-5 rounded-lg shadow-lg w-3/4 md:w-2/3">
+        <h2 className="text-lg md:text-2xl font-bold mb-4">Cart Details</h2>
         {cartItems.length === 0 ? (
           <p className="text-center text-lg">Your cart is empty</p>
         ) : (
@@ -46,29 +46,29 @@ const Modal = ({ show, onClose, cartItems }) => {
                 <div className="w-24 h-24">
                   <img src={item.img} alt={item.title} className="object-cover w-14 h-18 hover:border rounded" />
                 </div>
-                <div className="flex-1 ml-4">
-                  <h3 className="font-semibold">{item.title}</h3>
-                  <p>{item.description}</p>
+                <div className="flex-1 flex-col gap-2 md:gap-2 md:flex-1 md:ml-4">
+                  <h3 className="font-semibold text-sm md:text-lg">{item.title}</h3>
+                  <p className='text-sm md:text-lg'>{item.description}</p>
                 </div>
-                <div className="flex flex-col">
-                  <span className="font-semibold mr-10">Price: ${item.price}</span>
-                  <span className="font-semibold mr-16">Quantity: {item.quantity}</span>
-                  <span className='font-semibold'>Total Price: ${(item.price * item.quantity).toFixed(2)}</span>
+                <div className="flex flex-col ml-6 w-44 text-sm md:text-lg">
+                  <h1 className="font-semibold ">Price: ${item.price}</h1>
+                  <h1 className="font-semibold">Quantity: {item.quantity}</h1>
+                  <h1 className='font-semibold'>Total Price: ${(item.price * item.quantity).toFixed(2)}</h1>
                 </div>
               </li>
             ))}
           </ul>
         )}
-        <div className='flex justify-end'>
+        <div className='flex justify-end mr-8'>
           <div className="flex gap-5 mt-4">
             <button
-              className="bg-green-500 text-white py-2 px-4 rounded"
+              className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded"
               onClick={() => setOrderFormVisible(true)}
             >
               Order
             </button>
             <button
-              className="bg-red-500 text-white py-2 px-4 rounded"
+              className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded"
               onClick={onClose}
             >
               Close

@@ -35,7 +35,7 @@ const Product = () => {
                 animate={{ x: "100%" }}
                 transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
               >
-                <p className="text-sm md:text-md italic">
+                <p className="text-sm md:text-lg italic">
                   You have{" "}
                   <span className="font-semibold">{totalItemsInCart}</span>{" "}
                   items in your shopping cart

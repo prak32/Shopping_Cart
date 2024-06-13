@@ -74,7 +74,7 @@ const Registration = () => {
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-black">
       <ParticlesComponent />
-      <div className="relative max-w-lg mx-auto p-8 bg-gray-800 shadow-md rounded-lg">
+      <div className="relative max-w-sm md:max-w-lg mx-auto p-8 bg-gray-800 shadow-md rounded-lg">
         <h2 className="text-3xl font-bold mb-4 text-center h-10 text-white">Register</h2>
         <form onSubmit={handleRegister} className="space-y-4">
           <input

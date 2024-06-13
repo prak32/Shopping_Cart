@@ -211,7 +211,7 @@ const Cart = () => {
                 animate={{ x: "100%" }}
                 transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
               >
-                <p className="text-sm md:text-md italic">
+                <p className="text-sm md:text-lg italic">
                   You have{" "}
                   <span className="font-semibold">{totalItemsInCart}</span>{" "}
                   items in your shopping cart
@@ -264,9 +264,6 @@ const Cart = () => {
           </button>
         </div>
         <hr />
-        <div className="flex justify-center font-bold text-2xl md:text-4xl bg-gradient-to-r from-sky-600 via-blue-700 to-purple-950 text-transparent bg-clip-text">
-          Contact Form
-        </div>
         <Modal show={showModal} onClose={closeModal} cartItems={cartItems} />
         <ContactForm />
       </section>
