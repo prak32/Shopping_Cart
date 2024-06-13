@@ -205,7 +205,7 @@ const Cart = () => {
             <h1 className="font-bold text-2xl md:text-4xl bg-gradient-to-r from-sky-600 via-blue-700 to-purple-950 inline-block text-transparent bg-clip-text h-12 pl-6 md:pl-12">
               Shopping Cart
             </h1>
-            <div className="overflow-hidden w-[56vw] md:w-[28vw]">
+            <div className="overflow-hidden w-[60vw] md:w-[28vw]">
               <motion.div
                 initial={{ x: "0%" }}
                 animate={{ x: "100%" }}
