@@ -22,12 +22,12 @@ const Modal = ({ show, onClose, cartItems }) => {
 
     if (!name || !address || !phoneNumber) {
       setToast({ show: true, message: 'All fields are required!', type: 'error' });
-      setTimeout(() => setToast({ show: false, message: '', type: '' }), 3000);
+      setTimeout(() => setToast({ show: false, message: '', type: '' }), 1000);
       return;
     }
     setOrderFormVisible(true);
     setToast({ show: true, message: 'Payment Successful!', type: 'success' });
-    setTimeout(() => setToast({ show: false, message: '', type: '' }), 3000);
+    setTimeout(() => setToast({ show: false, message: '', type: '' }), 2000);
   };
 
   if (!show) {
@@ -82,7 +82,7 @@ const Modal = ({ show, onClose, cartItems }) => {
           <div className="bg-white p-5 rounded-lg shadow-lg w-2/3 relative">
             <h2 className="text-2xl font-bold mb-4">Order Form</h2>
             {toast.show && (
-              <div className={`absolute top-0 text-center mt-2 ml-32 px-4 py-2 rounded text-xs md:text-sm md:ml-96 border border-red-900 ${toast.type === 'error' ? 'bg-red-500' : 'bg-green-500'} text-white`}>
+              <div className={`absolute top-0 mt-6 ml-28 w-40 h-8 px-4 py-2 rounded text-xs md:text-sm md:ml-96 border border-red-900 ${toast.type === 'error' ? 'bg-red-500' : 'bg-green-500'} text-white`}>
                 {toast.message}
               </div>
             )}
