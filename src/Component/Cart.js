@@ -268,7 +268,7 @@ const Cart = () => {
         <ContactForm />
       </section>
       <footer className="flex items-center justify-center text-sm md:text-xl bg-gray-200 py-4 w-full h-18">
-        <div className="items-center py-2 h-7 w-10 md:py-2 md:h-10 md:w-20">
+        <div className="items-center py-1 h-7 w-10 md:py-2 md:h-10 md:w-20">
           <img src="logo2.png" alt="logo"/>
         </div>
         Ⓒ 2024 Venture Four Technology Pvt.Ltd. All Rights Reserved
