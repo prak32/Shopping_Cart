@@ -267,7 +267,7 @@ const Cart = () => {
         <Modal show={showModal} onClose={closeModal} cartItems={cartItems} />
         <ContactForm />
       </section>
-      <footer className="flex gap-4 items-center justify-center text-sm md:text-xl bg-gray-200 py-4 w-full h-18">
+      <footer className="flex gap-4 md:gap-1 items-center justify-center text-sm md:text-xl bg-gray-200 py-4 w-full h-18">
         <div className="items-center py-2 h-7 w-10 md:py-2 md:h-10 md:w-20">
           <img src="logo2.png" alt="logo"/>
         </div>
