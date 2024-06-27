@@ -13,7 +13,7 @@ const Login = () => {
   const navigate = useNavigate();
   const { setIsAuthenticated } = useAuth();
 
-  const handleLogin = (e) => {
+  const handleLogin = (e ) => {
     e.preventDefault();
     const users = JSON.parse(localStorage.getItem('users')) || [];
     const user = users.find(user => user.username === username && user.password === password);

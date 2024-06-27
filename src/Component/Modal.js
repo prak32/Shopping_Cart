@@ -25,6 +25,14 @@ const Modal = ({ show, onClose, cartItems }) => {
       setTimeout(() => setToast({ show: false, message: '', type: '' }), 1000);
       return;
     }
+
+    const phoneRegex = /^\d{10}$/;
+    if (!phoneRegex.test(phoneNumber)) {
+      setToast({ show: true, message: 'Phone number must be 10 digits!', type: 'error' });
+      setTimeout(() => setToast({ show: false, message: '', type: '' }), 2000);
+      return;
+    }
+
     setOrderFormVisible(true);
     setToast({ show: true, message: 'Payment Successful!', type: 'success' });
     setTimeout(() => setToast({ show: false, message: '', type: '' }), 2000);
@@ -125,6 +133,9 @@ const Modal = ({ show, onClose, cartItems }) => {
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   required
                 />
+                {formData.phoneNumber && !/^\d{10}$/.test(formData.phoneNumber) && (
+                  <p className="text-red-500 text-xs mt-2">Phone number must be 10 digits!</p>
+                )}
               </div>
             </form>
             <div className="flex justify-end">

@@ -63,7 +63,7 @@ const Contact = () => {
       </div>
       <div className="container mx-auto px-4 py-8 flex justify-center items-center">
         <div className="w-84 p-3 md:w-full max-w-md bg-gray-300 hover:bg-gray-400 shadow-md rounded-lg md:p-6">
-          <div className="font-bold text-center text-xl md:text-3xl mb-3 bg-gradient-to-r from-sky-600 via-blue-700 to-purple-950 inline-block text-transparent bg-clip-text w-full">Contact Me</div>
+          <div className="font-bold text-center text-xl md:text-3xl mb-3 bg-gradient-to-r from-sky-600 via-blue-700 to-purple-950 inline-block text-transparent bg-clip-text w-full">Contact Us</div>
           {formStatus === "success" && (
             <div className="py-2 text-center text-green-600 font-bold">
               Form submitted successfully!
